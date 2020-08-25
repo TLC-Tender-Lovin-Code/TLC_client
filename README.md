@@ -1,12 +1,12 @@
 ## The Dev Den: A virtual developer space
 
-Welcome to "The Dev Den"! This is a space where developers can post code, project links and comment on each others posts. A users will have a personal den that includes the languages the developer is proficient in, a list of their posts and a bio. Posts include short articles about the users topic of choice and other users can add comments to further the conversation. A user should also be able to edit their own content. The navbar allows the user to navigate and access all aspects of the site, as long as they have been authenticated. All authenticated user will have access to a view of all users. This is called the Watering Hole. Here you can click users name to view their den. When you access your own den, you will be able to update your
+Welcome to "The Dev Den"! This is a space where developers can post code, project links and comment on each others posts. A users will have a personal den that includes the languages the developer is proficient in, a list of their posts and a bio. Posts include short articles about the users topic of choice and other users can add comments to further the conversation. A user should also be able to edit their own content. The navbar allows the user to navigate and access all aspects of the site, as long as they have been authenticated. All authenticated user will have access to a view of all users. This is called the Watering Hole. Here you can click users name to view their den. When you access your own den, you will be able to update your password and profile. If for some reason you want to leave this robust community, you could also delete your profile.
 
 ## Important Links
 
 - [API Repo](https://github.com/TLC-Tender-Lovin-Code/TLC_api)
 - [Client Repo](https://github.com/TLC-Tender-Lovin-Code/TLC_client)
-- [Deployed API](www.link.com)
+- [Deployed API](https://young-lake-06085.herokuapp.com/)
 - [Deployed Client](https://tlc-tender-lovin-code.github.io/TLC_client/)
 
 ## Planning Story
@@ -19,10 +19,13 @@ We are team of big ideas. We knew we would have amazing ideas to work off of but
 
 ### Technologies Used
 
-- jQuery
-- HTML/CSS
+- Reactjs
 - Bootstrap
 - Javascript
+- HTML/CSS
+- Expressjs
+- MongoDB
+- Mongoose
 
 ### Unsolved Problems
 
@@ -34,4 +37,7 @@ We are team of big ideas. We knew we would have amazing ideas to work off of but
 ---
 
 #### Wireframe:
-![wireframe](https://lucidchart.zendesk.com/hc/article_attachments/360001080866/Facebook_Wireframe_-_New_Page.png)
+<img alt="Home Page" src="https://i.imgur.com/1Ru1pJK.png">
+<img alt="View Developers" src="https://i.imgur.com/cgp6zmv.png">
+<img alt="Create New Post" src="https://i.imgur.com/SGqe5WC.png">
+<img alt="My Profile" src="https://i.imgur.com/K5STF5z.png">
