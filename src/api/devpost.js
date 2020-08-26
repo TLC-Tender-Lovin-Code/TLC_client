@@ -11,3 +11,13 @@ export const createPost = (user, devpost) => {
     }
   })
 }
+
+export const viewPosts = (user, devpost) => {
+  return axios({
+    url: apiUrl + '/devposts',
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
