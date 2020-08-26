@@ -66,7 +66,7 @@ const UpdatePost = props => {
           value={post.title}
           name="title"
           onChange={handleChange}
-        />
+        /><br />
 
         <label>Subject</label>
         <input
@@ -74,7 +74,7 @@ const UpdatePost = props => {
           value={post.subject}
           name="subject"
           onChange={handleChange}
-        />
+        /><br />
 
         <label>Content</label>
         <textarea
@@ -82,7 +82,7 @@ const UpdatePost = props => {
           value={post.content}
           name="content"
           onChange={handleChange}
-        />
+        /><br />
 
         <button type="submit">Submit</button>
         <Link to='/'>

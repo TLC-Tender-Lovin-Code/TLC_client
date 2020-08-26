@@ -12,7 +12,6 @@ import CreatePost from '../devPost/CreatePost'
 import Posts from '../devPost/Posts'
 import UpdatePost from '../devPost/UpdatePost'
 
-
 class App extends Component {
   constructor () {
     super()
