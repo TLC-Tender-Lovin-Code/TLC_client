@@ -5,9 +5,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 // import apiUrl from '../../apiConfig'
 import { createPost } from '../../api/devpost'
-// import messages from '../AutoDismissAlert/messages'
+import messages from '../AutoDismissAlert/messages'
 
-const PostCreate = ({ user }) => {
+const PostCreate = ({ msgAlert, user }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [createdPostId, setCreatedPostId] = useState(null)
 
@@ -28,29 +28,19 @@ const PostCreate = ({ user }) => {
   }
   const handleSubmit = event => {
     event.preventDefault()
-    // const { user } = this.props
-    // const { msgAlert } = this.props
-    // axios({
-    //   url: `${apiUrl}/create-post`,
-    //   method: 'POST',
-    //   data: { devpost },
-    //   headers: {
-    //     'Authorization': `Token token=${user.token}`
-    //   }
-    // })
+    // const msgAlert = this.props
     createPost(user, devpost)
       .then(res => setCreatedPostId(res.data.devpost._id))
-      // .then(() => msgAlert({
-      //   heading: 'Create Post Success',
-      //   message: messages.createPostSuccess,
-      //   variant: 'success'
-      // }))
-      // .catch(() => msgAlert({
-      //   heading: 'Failed To Create Post: ',
-      //   message: messages.createPostFailure,
-      //   variant: 'danger'
-      // }))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Create Post Success',
+        message: messages.createPostSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'Failed To Create Post: ',
+        message: messages.createPostFailure,
+        variant: 'danger'
+      }))
   }
 
   if (createdPostId) {
