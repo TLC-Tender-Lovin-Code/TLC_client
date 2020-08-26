@@ -30,12 +30,15 @@ const UpdatePost = props => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    const { msgAlert } = this.props
+    const { msgAlert, user } = this.props
 
     axios({
       url: `${apiUrl}/devposts/${props.match.params.id}`,
       method: 'PATCH',
-      data: { post }
+      data: { post },
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
     })
       .then(() => setUpdated({ updated: true }))
       .then(() => msgAlert({
