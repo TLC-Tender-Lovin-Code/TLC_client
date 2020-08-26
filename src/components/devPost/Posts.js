@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
-import { Link } from 'react-router-dom'
+import { viewPosts } from '../../api/devpost'
 
-const Posts = props => {
-  const [posts, setPosts] = useState([])
+const Posts = ({ user }) => {
+  const [devposts, setDevposts] = useState([])
 
   useEffect(() => {
-    axios(`${apiUrl}/devposts`)
-      // .then(res => this.setState({ books: res.data.books }))
-      .then(res => setPosts(res.data.devpost))
+    viewPosts(user, devposts)
+      .then(res => setDevposts(res.data.devposts))
       .catch(console.error)
   }, [])
 
   let postsToRender
-  if (posts) {
-    postsToRender = posts.map(post => {
-      return <li key={post._id}>
-        <Link to={`/devposts/${post._id}`}>{post.title}</Link>
-      </li>
+  if (devposts) {
+    postsToRender = devposts.map(devpost => {
+      return <div key={devpost._id}>
+        <h4>{devpost.title}</h4>
+        <h6>Subject: {devpost.subject}</h6>
+        <p>Content: {devpost.content}</p>
+      </div>
     })
     return (
       <div>
         <h4>Posts</h4>
-        <ul>
+        <div>
           {postsToRender}
-        </ul>
+        </div>
       </div>
     )
   }

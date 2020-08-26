@@ -56,13 +56,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-<<<<<<< HEAD
           <AuthenticatedRoute user={user} path='/create-post' render={() => (
             <CreatePost user={user} />
-=======
+          )} />
           <AuthenticatedRoute user={user} path='/devposts' render={() => (
             <Posts msgAlert={this.msgAlert} user={user} />
->>>>>>> Added the see all posts functionality
           )} />
         </main>
       </Fragment>
