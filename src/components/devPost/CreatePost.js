@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 // import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -11,14 +11,7 @@ const PostCreate = ({ msgAlert, user }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [createdPostId, setCreatedPostId] = useState(null)
 
-  // Create a handleChange function that will be run anytime an input is changed
-  // ex. anytime someone types in the input
   const handleChange = event => {
-    // ensure that the event's properties (especially event.target) are persisted,
-    // i.e. not changed to null, after the handleChange function finishes running
-    //
-    // we need to do this, because the callback we pass to `this.setState`, will
-    // not be called by React until after `handleChange` has finished running.
     event.persist()
     setDevpost(prevDevpost => {
       const updatedField = { [event.target.name]: event.target.value }
@@ -41,12 +34,15 @@ const PostCreate = ({ msgAlert, user }) => {
         message: messages.createPostFailure,
         variant: 'danger'
       }))
+    createPost(user, devpost)
+      .then(res => setCreatedPostId(res.data.devpost._id))
+      .catch(console.error)
   }
 
   if (createdPostId) {
     return <Redirect to={`/devpost/${createdPostId}`} />
   }
-  // const { title, subject, content } = this.state
+
   return (
     <div className="row">
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
