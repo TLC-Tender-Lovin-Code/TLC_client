@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
-  const [deleted, setDeleted] = useState(false)
+  const [deleted, setDeleted] = useState(null)
 
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
       .catch(console.error)
-  }, [])
+  }, [deleted])
   const destroy = (id) => {
     axios({
       url: apiUrl + `/devposts/${id}`,
@@ -22,7 +22,7 @@ const Posts = ({ msgAlert, user, match }) => {
         'Authorization': `Bearer ${user.token}`
       }
     })
-      .then(() => setDeleted(true))
+      .then(() => setDeleted(id))
       .then(() => msgAlert({
         heading: 'Delete Post Success',
         message: messages.deletePostSuccess,
@@ -33,13 +33,6 @@ const Posts = ({ msgAlert, user, match }) => {
         message: messages.deletePostFailure,
         variant: 'danger'
       }))
-  }
-  if (deleted) {
-    return (
-      <Redirect to={{
-        pathname: '/'
-      }} />
-    )
   }
 
   let postsToRender
