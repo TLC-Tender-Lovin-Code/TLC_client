@@ -25,9 +25,6 @@ const UpdatePost = ({ msgAlert, user, match }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    // const { user } = this.props
-    console.log(user)
-    console.log(devpost)
     updatePost(user, devpost, match.params.id)
       .then(() => setUpdated({ updated: true }))
       .then(() => msgAlert({
