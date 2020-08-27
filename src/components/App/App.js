@@ -9,7 +9,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import CreatePost from '../devPost/CreatePost'
 import Posts from '../devPost/Posts'
-import UpdatePost from '../devPost/UpdatePost'
+import UpdatePost from '../devPost/UpdatePost.js'
 
 class App extends Component {
   constructor () {
