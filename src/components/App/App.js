@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
@@ -63,8 +62,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/devposts' render={() => (
             <Posts msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/update-post/:id' render={() => (
-            <UpdatePost user={user} />
+          <AuthenticatedRoute user={user} path='/update-post/:id' render={({ match }) => (
+            <UpdatePost user={user} match={match}/>
           )} />
         </main>
       </Fragment>

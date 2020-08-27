@@ -1,26 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect, Link, withRouter } from 'react-router-dom'
 import Layout from '../shared/Layout'
 // import messages from '../AutoDismissAlert/messages'
-import { updatePost } from '../../api/devpost'
+import { updatePost, showPost } from '../../api/devpost'
 
-const UpdatePost = ({ user, props }) => {
+const UpdatePost = ({ user, match }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [updated, setUpdated] = useState(false)
+
+  useEffect(() => {
+    showPost(user, devpost, match.params.id)
+      .then(res => setDevpost(res.data.devpost))
+      .catch(console.error)
+  }, [])
 
   const handleChange = event => {
     event.persist()
     setDevpost(prevDevpost => {
       const updatedField = { [event.target.name]: event.target.value }
       const editedPost = Object.assign({}, prevDevpost, updatedField)
-      return { editedPost }
+      return editedPost
     })
   }
 
   const handleSubmit = event => {
     event.preventDefault()
     // const { user } = this.props
-    updatePost(user, devpost)
+    console.log(user)
+    console.log(devpost)
+    updatePost(user, devpost, match.params.id)
       .then(() => setUpdated({ updated: true }))
       // .then(() => msgAlert({
       //   heading: 'Update Post Success',
@@ -44,18 +52,20 @@ const UpdatePost = ({ user, props }) => {
       <form onSubmit={handleSubmit}>
         <label>Title</label>
         <input
-          placeholder="Enter a Title"
+          placeholder="Enter a title"
           value={devpost.title}
           name="title"
           onChange={handleChange}
+          type="text"
         /><br />
 
         <label>Subject</label>
         <input
-          placeholder="John Doe"
+          placeholder="Enter a subject"
           value={devpost.subject}
           name="subject"
           onChange={handleChange}
+          type="text"
         /><br />
 
         <label>Content</label>
@@ -64,6 +74,7 @@ const UpdatePost = ({ user, props }) => {
           value={devpost.content}
           name="content"
           onChange={handleChange}
+          type="text"
         /><br />
 
         <button type="submit">Submit</button>
