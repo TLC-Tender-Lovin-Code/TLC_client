@@ -16,7 +16,7 @@ const Posts = ({ msgAlert, user, match }) => {
   }, [])
   const destroy = (id) => {
     axios({
-      url: apiUrl + `/delete-post/${id}`,
+      url: apiUrl + `/devposts/${id}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -37,7 +37,7 @@ const Posts = ({ msgAlert, user, match }) => {
   if (deleted) {
     return (
       <Redirect to={{
-        pathname: '/devposts'
+        pathname: '/'
       }} />
     )
   }
