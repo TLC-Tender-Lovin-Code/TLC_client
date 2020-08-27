@@ -8,12 +8,6 @@ const UpdatePost = ({ user, props }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [updated, setUpdated] = useState(false)
 
-  // useEffect(() => {
-  //   axios(`${apiUrl}/posts/${props.match.params.id}`)
-  //     .then(res => setDevpost(res.data.devpost))
-  //     .catch(console.error)
-  // }, [])
-
   const handleChange = event => {
     event.persist()
     setDevpost(prevDevpost => {
