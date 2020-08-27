@@ -23,11 +23,21 @@ export const viewPosts = (user, devpost) => {
   })
 }
 
-export const updatePost = (user, devpost) => {
+export const showPost = (user, devpost, id) => {
   return axios({
-    url: `${apiUrl}/update-post/${devpost._id}`,
+    url: apiUrl + `/devposts/${id}`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
+
+export const updatePost = (user, devpost, id) => {
+  return axios({
+    url: `${apiUrl}/devposts/${id}`,
     method: 'PATCH',
-    data: devpost,
+    data: { devpost },
     headers: {
       'Authorization': `Bearer ${user.token}`
     }
