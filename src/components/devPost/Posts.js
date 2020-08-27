@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
@@ -28,7 +28,11 @@ const Posts = ({ msgAlert, user, match }) => {
         message: messages.deletePostSuccess,
         variant: 'success'
       }))
-      .catch(console.error)
+      .catch(() => msgAlert({
+        heading: 'Delete Post Failure',
+        message: messages.deletePostFailure,
+        variant: 'danger'
+      }))
   }
   if (deleted) {
     return (
@@ -59,4 +63,4 @@ const Posts = ({ msgAlert, user, match }) => {
   }
 }
 
-export default withRouter(Posts)
+export default Posts
