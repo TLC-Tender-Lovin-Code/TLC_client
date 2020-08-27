@@ -34,9 +34,6 @@ const PostCreate = ({ msgAlert, user }) => {
         message: messages.createPostFailure,
         variant: 'danger'
       }))
-    createPost(user, devpost)
-      .then(res => setCreatedPostId(res.data.devpost._id))
-      .catch(console.error)
   }
 
   if (createdPostId) {

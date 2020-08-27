@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const createPost = (user, devpost) => {
   return axios({
-    url: apiUrl + '/create-post',
+    url: apiUrl + '/devposts',
     method: 'POST',
     data: { devpost },
     headers: {
