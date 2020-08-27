@@ -29,29 +29,15 @@ const Posts = ({ msgAlert, user, match }) => {
         variant: 'success'
       }))
       .catch(console.error)
-    if (deleted) {
-      return (
-        <Redirect to={{
-          pathname: '/devposts'
-        }} />
-      )
-    }
   }
-  // destroy()
-  //   .then(() => setDeleted(true))
-  //   .then(() => msgAlert({
-  //     heading: 'Delete Post Success',
-  //     message: messages.createPostSuccess,
-  //     variant: 'success'
-  //   }))
-  //   .catch(console.error)
-  // if (deleted) {
-  //   return (
-  //     <Redirect to={{
-  //       pathname: '/'
-  //     }} />
-  //   )
-  // }
+  if (deleted) {
+    return (
+      <Redirect to={{
+        pathname: '/devposts'
+      }} />
+    )
+  }
+
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
