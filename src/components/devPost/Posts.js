@@ -56,9 +56,13 @@ const Posts = ({ msgAlert, user, match }) => {
       </div>
     })
 
+    const divStyle = {
+      color: 'blue'
+    }
+
     return (
-      <div>
-        <h4>Posts</h4>
+      <div style={divStyle}>
+        <h2>Posts</h2>
         <div>
           {postsToRender}
         </div>
