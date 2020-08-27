@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
@@ -28,30 +28,20 @@ const Posts = ({ msgAlert, user, match }) => {
         message: messages.deletePostSuccess,
         variant: 'success'
       }))
-      .catch(console.error)
-    if (deleted) {
-      return (
-        <Redirect to={{
-          pathname: '/devposts'
-        }} />
-      )
-    }
+      .catch(() => msgAlert({
+        heading: 'Delete Post Failure',
+        message: messages.deletePostFailure,
+        variant: 'danger'
+      }))
   }
-  // destroy()
-  //   .then(() => setDeleted(true))
-  //   .then(() => msgAlert({
-  //     heading: 'Delete Post Success',
-  //     message: messages.createPostSuccess,
-  //     variant: 'success'
-  //   }))
-  //   .catch(console.error)
-  // if (deleted) {
-  //   return (
-  //     <Redirect to={{
-  //       pathname: '/'
-  //     }} />
-  //   )
-  // }
+  if (deleted) {
+    return (
+      <Redirect to={{
+        pathname: '/devposts'
+      }} />
+    )
+  }
+
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
@@ -73,4 +63,4 @@ const Posts = ({ msgAlert, user, match }) => {
   }
 }
 
-export default withRouter(Posts)
+export default Posts
