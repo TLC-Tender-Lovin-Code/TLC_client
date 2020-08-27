@@ -5,10 +5,13 @@ import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 import { Card } from 'react-bootstrap'
+<<<<<<< HEAD
 
+=======
+>>>>>>> Trying to fix this file issue
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
-  const [deleted, setDeleted] = useState(false)
+  const [deleted, setDeleted] = useState(null)
 
   useEffect(() => {
     viewPosts(user, devposts)
