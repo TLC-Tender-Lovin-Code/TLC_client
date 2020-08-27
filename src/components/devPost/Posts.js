@@ -5,6 +5,10 @@ import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 import { Card } from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
   const [deleted, setDeleted] = useState(null)
@@ -39,21 +43,25 @@ const Posts = ({ msgAlert, user, match }) => {
   if (devposts) {
     postsToRender = devposts.map(devpost => {
       return <div key={devpost._id}>
-        <div className="viewpost">
-          <Card style={{ width: '18rem' }} className="">
-            <Card.Body>
-              <Card.Title>Title: {devpost.title}</Card.Title>
-              <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
-              <Card.Text>
-                Content: <br />{devpost.content}{devpost.username}
-              </Card.Text>
-              <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
-              <Link to={`/update-post/${devpost._id}`}>
-                <button className='btn btn-warning'>Update Post</button>
-              </Link>
-            </Card.Body>
-          </Card>
-        </div>
+        <Container className="viewpost">
+          <Row>
+            <Col>
+              <Card style={{ width: '18rem' }} className="">
+                <Card.Body>
+                  <Card.Title>Title: {devpost.title}</Card.Title>
+                  <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+                  <Card.Text>
+                    Content: <br />{devpost.content}{devpost.username}
+                  </Card.Text>
+                  <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                  <Link to={`/update-post/${devpost._id}`}>
+                    <button className='btn btn-warning'>Update Post</button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
     })
 
