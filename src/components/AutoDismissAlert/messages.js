@@ -13,5 +13,7 @@ export default {
   createPostSuccess: 'Created Post Successfully',
   createPostFailure: 'Failed To Create Post',
   deletePostSuccess: 'Deleted Post Successfully',
-  deletePostFailure: 'Deleted Post was a Failure!'
+  deletePostFailure: 'Deleted Post was a Failure!',
+  updatePostSuccess: 'Your post has been updated.',
+  updatePostFailure: 'Your post was not updated, please try again...'
 }

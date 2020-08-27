@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
@@ -10,6 +9,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import CreatePost from '../devPost/CreatePost'
 import Posts from '../devPost/Posts'
+import UpdatePost from '../devPost/UpdatePost'
 
 class App extends Component {
   constructor () {
@@ -61,6 +61,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/devposts' render={() => (
             <Posts msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/update-post/:id' render={({ match }) => (
+            <UpdatePost user={user} match={match}/>
           )} />
         </main>
       </Fragment>

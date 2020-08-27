@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
@@ -50,8 +50,12 @@ const Posts = ({ msgAlert, user, match }) => {
         <h6>Subject: {devpost.subject}</h6>
         <p>Content: {devpost.content}</p>
         <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+        <Link to={`/update-post/${devpost._id}`}>
+          <button>Update Post</button>
+        </Link>
       </div>
     })
+
     return (
       <div>
         <h4>Posts</h4>
@@ -63,4 +67,4 @@ const Posts = ({ msgAlert, user, match }) => {
   }
 }
 
-export default Posts
+export default withRouter(Posts)
