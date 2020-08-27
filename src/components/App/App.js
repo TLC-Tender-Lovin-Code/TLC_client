@@ -63,7 +63,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/devposts' render={() => (
             <Posts msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/update-post' component={UpdatePost} />
+          <AuthenticatedRoute user={user} path='/update-post/:id' render={() => (
+            <UpdatePost user={user} />
+          )} />
         </main>
       </Fragment>
     )

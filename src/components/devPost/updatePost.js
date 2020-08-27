@@ -1,60 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import { Redirect, Link } from 'react-router-dom'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import React, { useState } from 'react'
+import { Redirect, Link, withRouter } from 'react-router-dom'
 import Layout from '../shared/Layout'
-import messages from '../AutoDismissAlert/messages'
+// import messages from '../AutoDismissAlert/messages'
+import { updatePost } from '../../api/devpost'
 
-const UpdatePost = props => {
-  const [post, setPost] = useState({ title: '', subject: '', content: '' })
+const UpdatePost = ({ user, props }) => {
+  const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [updated, setUpdated] = useState(false)
 
-  useEffect(() => {
-    axios(`${apiUrl}/posts/${props.match.params.id}`)
-      .then(res => setPost(res.data.devpost))
-      .catch(console.error)
-  }, [])
+  // useEffect(() => {
+  //   axios(`${apiUrl}/posts/${props.match.params.id}`)
+  //     .then(res => setDevpost(res.data.devpost))
+  //     .catch(console.error)
+  // }, [])
 
   const handleChange = event => {
     event.persist()
-
-    setPost(prevPost => {
+    setDevpost(prevDevpost => {
       const updatedField = { [event.target.name]: event.target.value }
-
-      const editedPost = Object.assign({}, prevPost, updatedField)
-
+      const editedPost = Object.assign({}, prevDevpost, updatedField)
       return { editedPost }
     })
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-
-    const { msgAlert, user } = this.props
-
-    axios({
-      url: `${apiUrl}/devposts/${props.match.params.id}`,
-      method: 'PATCH',
-      data: { post },
-      headers: {
-        'Authorization': `Token token=${user.token}`
-      }
-    })
+    // const { user } = this.props
+    updatePost(user, devpost)
       .then(() => setUpdated({ updated: true }))
-      .then(() => msgAlert({
-        heading: 'Update Post Success',
-        message: messages.updatePostSuccess,
-        variant: 'success'
-      }))
-      .msgAlert({
-        heading: 'Change Password Failed. ',
-        message: messages.updatePostFailure,
-        variant: 'danger'
-      })
+      // .then(() => msgAlert({
+      //   heading: 'Update Post Success',
+      //   message: messages.updatePostSuccess,
+      //   variant: 'success'
+      // }))
+      // .msgAlert({
+      //   heading: 'Update Post Failed. ',
+      //   message: messages.updatePostFailure,
+      //   variant: 'danger'
+      // })
+      .catch(console.error)
   }
 
   if (updated) {
-    return <Redirect to={`/posts/${props.match.params.id}`} />
+    return <Redirect to='/devposts' />
   }
 
   return (
@@ -63,7 +51,7 @@ const UpdatePost = props => {
         <label>Title</label>
         <input
           placeholder="Enter a Title"
-          value={post.title}
+          value={devpost.title}
           name="title"
           onChange={handleChange}
         /><br />
@@ -71,7 +59,7 @@ const UpdatePost = props => {
         <label>Subject</label>
         <input
           placeholder="John Doe"
-          value={post.subject}
+          value={devpost.subject}
           name="subject"
           onChange={handleChange}
         /><br />
@@ -79,7 +67,7 @@ const UpdatePost = props => {
         <label>Content</label>
         <textarea
           placeholder="Enter text here ..."
-          value={post.content}
+          value={devpost.content}
           name="content"
           onChange={handleChange}
         /><br />
@@ -93,4 +81,4 @@ const UpdatePost = props => {
   )
 }
 
-export default UpdatePost
+export default withRouter(UpdatePost)
