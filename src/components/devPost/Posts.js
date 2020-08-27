@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
-
+import { Card } from 'react-bootstrap'
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
-  const [deleted, setDeleted] = useState(false)
+  const [deleted, setDeleted] = useState(null)
 
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
       .catch(console.error)
-  }, [])
+  }, [deleted])
   const destroy = (id) => {
     axios({
-      url: apiUrl + `/delete-post/${id}`,
+      url: apiUrl + `/devposts/${id}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
       }
     })
-      .then(() => setDeleted(true))
+      .then(() => setDeleted(id))
       .then(() => msgAlert({
         heading: 'Delete Post Success',
         message: messages.deletePostSuccess,
@@ -34,30 +34,31 @@ const Posts = ({ msgAlert, user, match }) => {
         variant: 'danger'
       }))
   }
-  if (deleted) {
-    return (
-      <Redirect to={{
-        pathname: '/devposts'
-      }} />
-    )
-  }
 
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
       return <div key={devpost._id}>
-        <h4>{devpost.title}</h4>
-        <h6>Subject: {devpost.subject}</h6>
-        <p>Content: {devpost.content}</p>
-        <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
-        <Link to={`/update-post/${devpost._id}`}>
-          <button>Update Post</button>
-        </Link>
+        <div className="viewpost">
+          <Card style={{ width: '18rem' }} className="">
+            <Card.Body>
+              <Card.Title>Title: {devpost.title}</Card.Title>
+              <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+              <Card.Text>
+                Content: <br />{devpost.content}{devpost.username}
+              </Card.Text>
+              <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+              <Link to={`/update-post/${devpost._id}`}>
+                <button className='btn btn-warning'>Update Post</button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     })
 
     return (
-      <div>
+      <div className="">
         <h4>Posts</h4>
         <div>
           {postsToRender}

@@ -77,9 +77,9 @@ const UpdatePost = ({ user, match }) => {
           type="text"
         /><br />
 
-        <button type="submit">Update</button>
+        <button className='btn btn-warning' type="submit">Update</button>
         <Link to='/'>
-          <button>Cancel</button>
+          <button className='btn btn-primary'>Cancel</button>
         </Link>
       </form>
     </Layout>
