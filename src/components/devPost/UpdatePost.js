@@ -76,6 +76,10 @@ const UpdatePost = ({ msgAlert, user, match }) => {
         <button className='btn btn-warning' type="submit">Update</button>
         <Link to='/'>
           <button className='btn btn-primary'>Cancel</button>
+          <button type="submit">Update</button>
+        </Link>
+        <Link to='/'>
+          <button>Cancel</button>
         </Link>
       </form>
     </Layout>
