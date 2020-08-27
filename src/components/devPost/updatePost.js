@@ -77,7 +77,7 @@ const UpdatePost = ({ user, match }) => {
           type="text"
         /><br />
 
-        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
         <Link to='/'>
           <button>Cancel</button>
         </Link>
