@@ -8,6 +8,7 @@ const authenticatedOptions = (
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#create-post">Create Post</Nav.Link>
     <Nav.Link href="#devposts">Posts</Nav.Link>
+    <Nav.Link href="#update-post">Update Post</Nav.Link>
   </Fragment>
 )
 
