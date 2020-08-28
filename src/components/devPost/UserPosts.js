@@ -43,7 +43,7 @@ const Posts = ({ msgAlert, user, match }) => {
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
-      const isSameUser = (user._id === devpost.owner)
+      const isSameUser = (user._id === devpost.owner._id)
       return <div key={devpost._id}>
         <Container className="viewpost">
           <Row>
@@ -56,7 +56,7 @@ const Posts = ({ msgAlert, user, match }) => {
                       <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
                       <Card.Text>
                     Content: <br />{devpost.content}<br />
-                    Written By:{devpost.owner} {/* we would like to access the username here. */}
+                    Written By:{devpost.owner.username} {/* we would like to access the username here. */}
                       </Card.Text>
 
                       <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>

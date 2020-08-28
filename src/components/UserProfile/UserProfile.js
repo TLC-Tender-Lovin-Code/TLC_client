@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -38,14 +37,6 @@ const UserProfile = (props, user) => {
     <div>
       <div style={profileHeader}>
         <h1>Welcome to your Den</h1>
-        <div>
-          <Link to='/'>
-            <button className="btn btn-primary">Home</button>
-          </Link>
-          <Link to='/devposts'>
-            <button className="btn btn-primary">Dev Den</button>
-          </Link>
-        </div>
       </div>
       <div style={userView}>
         <Container>
