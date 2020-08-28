@@ -5,6 +5,8 @@ import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 import { Card } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Layout from '../shared/Layout'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -40,7 +42,7 @@ const Posts = ({ msgAlert, user, match }) => {
       const isSameUser = (user._id === devpost.owner._id)
       return <div key={devpost._id}>
         <div className="viewpost">
-          <Card>
+          <Card as="col-6-sm">
             <Card.Header as="h5">Written By:{devpost.owner.username}</Card.Header>
             <Card.Body>
               <Card.Title>Title: {devpost.title}</Card.Title>
@@ -48,12 +50,11 @@ const Posts = ({ msgAlert, user, match }) => {
               <Card.Text>
                 Content: <br />{devpost.content}
               </Card.Text>
-
               {isSameUser ? (
                 <React.Fragment>
-                  <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                  <Button variant='basic' onClick={() => destroy(devpost._id)}>Delete Post</Button>
                   <Link to={`/update-post/${devpost._id}`}>
-                    <button className='btn btn-warning'>Update Post</button>
+                    <Button variant='basic'>Update Post</Button>
                   </Link>
                 </React.Fragment>
               ) : '' }
@@ -63,12 +64,14 @@ const Posts = ({ msgAlert, user, match }) => {
       </div>
     })
     return (
-      <div className="">
-        <h2>Posts</h2>
-        <div>
-          {postsToRender}
+      <Layout>
+        <div className="">
+          <h2>Posts</h2>
+          <div>
+            {postsToRender}
+          </div>
         </div>
-      </div>
+      </Layout>
     )
   }
 }

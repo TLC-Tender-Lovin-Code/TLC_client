@@ -1,14 +1,23 @@
 import React from 'react'
 import Footer from './Footer'
 
-const Layout = props => (
-  <div>
-    <h1>Layout Coming Soon..</h1>
+const Layout = props => {
+  // const backgroundImageUrl = 'https://i.imgur.com/X3qo3Y7.jpg'
 
-    {props.children}
+  const pageLayout = {
+    // backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundSize: '',
+    backgroundPosition: 'center',
+    width: '100%'
+  }
 
-    <Footer />
-  </div>
-)
+  return (
+    <div style={pageLayout}>
 
+      {props.children}
+
+      <Footer />
+    </div>
+  )
+}
 export default Layout
