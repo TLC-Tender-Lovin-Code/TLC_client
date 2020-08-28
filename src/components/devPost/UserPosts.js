@@ -56,7 +56,6 @@ const Posts = ({ msgAlert, user, match }) => {
                       <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
                       <Card.Text>
                     Content: <br />{devpost.content}<br />
-                    Written By:{devpost.owner} {/* we would like to access the username here. */}
                       </Card.Text>
 
                       <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
