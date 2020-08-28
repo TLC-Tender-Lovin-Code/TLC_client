@@ -9,6 +9,7 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import CreatePost from '../devPost/CreatePost'
 import Posts from '../devPost/Posts'
+import UserPosts from '../devPost/UserPosts'
 import UpdatePost from '../devPost/UpdatePost.js'
 
 class App extends Component {
@@ -64,6 +65,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/update-post/:id' render={({ match }) => (
             <UpdatePost msgAlert={this.msgAlert} user={user} match={match}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/den' render={() => (
+            <UserPosts user={user} />
           )} />
         </main>
       </Fragment>
