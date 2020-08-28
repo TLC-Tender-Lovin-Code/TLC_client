@@ -8,6 +8,7 @@ import { Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import UserProfile from '../UserProfile/UserProfile'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -47,24 +48,25 @@ const Posts = ({ msgAlert, user, match }) => {
         <Container className="viewpost">
           <Row>
             <Col>
-              <Card style={{ width: '18rem' }} className="">
-                <Card.Body>
-                  <Card.Title>Title: {devpost.title}</Card.Title>
-                  <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
-                  <Card.Text>
+              {isSameUser ? (
+                <React.Fragment>
+                  <Card border="warning" style={{ width: '36rem' }} className="profile-cards">
+                    <Card.Body>
+                      <Card.Title>Title: {devpost.title}</Card.Title>
+                      <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+                      <Card.Text>
                     Content: <br />{devpost.content}<br />
                     Written By:{user.username}
-                  </Card.Text>
-                  {isSameUser ? (
-                    <React.Fragment>
+                      </Card.Text>
+
                       <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
                       <Link to={`/update-post/${devpost._id}`}>
                         <button className='btn btn-warning'>Update Post</button>
                       </Link>
-                    </React.Fragment>
-                  ) : ''}
-                </Card.Body>
-              </Card>
+                    </Card.Body>
+                  </Card>
+                </React.Fragment>
+              ) : ''}
             </Col>
           </Row>
         </Container>
@@ -72,12 +74,14 @@ const Posts = ({ msgAlert, user, match }) => {
     })
 
     return (
-      <div className="">
-        <div>
+      <UserProfile>
+        <div className="">
           <h4>Posts</h4>
-          {postsToRender}
+          <div className="">
+            {postsToRender}
+          </div>
         </div>
-      </div>
+      </UserProfile>
     )
   }
 }

@@ -37,7 +37,7 @@ const PostCreate = ({ msgAlert, user }) => {
   }
 
   if (createdPostId) {
-    return <Redirect to={`/devpost/${createdPostId}`} />
+    return <Redirect to={'/devposts'} />
   }
 
   return (
