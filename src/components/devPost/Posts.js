@@ -37,17 +37,18 @@ const Posts = ({ msgAlert, user, match }) => {
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
-      const isSameUser = (user._id === devpost.owner)
+      const isSameUser = (user._id === devpost.owner._id)
       return <div key={devpost._id}>
         <div className="viewpost">
           <Card>
-            <Card.Header as="h5">Post</Card.Header>
+            <Card.Header as="h5">Written By:{devpost.owner.username}</Card.Header>
             <Card.Body>
               <Card.Title>Title: {devpost.title}</Card.Title>
               <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
               <Card.Text>
                 Content: <br />{devpost.content}
               </Card.Text>
+
               {isSameUser ? (
                 <React.Fragment>
                   <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
