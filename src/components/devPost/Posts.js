@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { viewPosts } from '../../api/devpost'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
+import { Card } from 'react-bootstrap'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -13,16 +14,16 @@ const Posts = ({ msgAlert, user, match }) => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
       .catch(console.error)
-  }, [])
+  }, [deleted])
   const destroy = (id) => {
     axios({
-      url: apiUrl + `/delete-post/${id}`,
+      url: apiUrl + `/devposts/${id}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
       }
     })
-      .then(() => setDeleted(true))
+      .then(() => setDeleted(id))
       .then(() => msgAlert({
         heading: 'Delete Post Success',
         message: messages.deletePostSuccess,
@@ -34,34 +35,37 @@ const Posts = ({ msgAlert, user, match }) => {
         variant: 'danger'
       }))
   }
-  if (deleted) {
-    return (
-      <Redirect to={{
-        pathname: '/devposts'
-      }} />
-    )
-  }
 
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
+      const isSameUser = (user._id === devpost.owner)
       return <div key={devpost._id}>
-        <h4>{devpost.title}</h4>
-        <h6>Subject: {devpost.subject}</h6>
-        <p>Content: {devpost.content}</p>
-        <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
-        <Link to={`/update-post/${devpost._id}`}>
-          <button>Update Post</button>
-        </Link>
+        <div className="viewpost">
+          <Card>
+            <Card.Header as="h5">Post</Card.Header>
+            <Card.Body>
+              <Card.Title>Title: {devpost.title}</Card.Title>
+              <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+              <Card.Text>
+                Content: <br />{devpost.content}
+              </Card.Text>
+              {isSameUser ? (
+                <React.Fragment>
+                  <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                  <Link to={`/update-post/${devpost._id}`}>
+                    <button className='btn btn-warning'>Update Post</button>
+                  </Link>
+                </React.Fragment>
+              ) : '' }
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     })
 
-    const divStyle = {
-      color: 'blue'
-    }
-
     return (
-      <div style={divStyle}>
+      <div className="">
         <h2>Posts</h2>
         <div>
           {postsToRender}

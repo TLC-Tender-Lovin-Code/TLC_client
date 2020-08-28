@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Link, withRouter } from 'react-router-dom'
 import Layout from '../shared/Layout'
-// import messages from '../AutoDismissAlert/messages'
+import messages from '../AutoDismissAlert/messages'
 import { updatePost, showPost } from '../../api/devpost'
 
-const UpdatePost = ({ user, match }) => {
+const UpdatePost = ({ msgAlert, user, match }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
   const [updated, setUpdated] = useState(false)
 
@@ -30,17 +30,16 @@ const UpdatePost = ({ user, match }) => {
     console.log(devpost)
     updatePost(user, devpost, match.params.id)
       .then(() => setUpdated({ updated: true }))
-      // .then(() => msgAlert({
-      //   heading: 'Update Post Success',
-      //   message: messages.updatePostSuccess,
-      //   variant: 'success'
-      // }))
-      // .msgAlert({
-      //   heading: 'Update Post Failed. ',
-      //   message: messages.updatePostFailure,
-      //   variant: 'danger'
-      // })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Update Post Success',
+        message: messages.updatePostSuccess,
+        variant: 'success'
+      }))
+      .catch(() => msgAlert({
+        heading: 'Update Post Failed. ',
+        message: messages.updatePostFailure,
+        variant: 'danger'
+      }))
   }
 
   if (updated) {
@@ -77,9 +76,9 @@ const UpdatePost = ({ user, match }) => {
           type="text"
         /><br />
 
-        <button type="submit">Update</button>
+        <button className='btn btn-warning' type="submit">Update</button>
         <Link to='/'>
-          <button>Cancel</button>
+          <button className='btn btn-primary'>Cancel</button>
         </Link>
       </form>
     </Layout>
