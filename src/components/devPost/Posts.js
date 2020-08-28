@@ -9,7 +9,7 @@ import { Card } from 'react-bootstrap'
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
   const [deleted, setDeleted] = useState(null)
-
+  console.log(devposts)
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
