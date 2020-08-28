@@ -5,10 +5,15 @@ import messages from '../AutoDismissAlert/messages'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 import { Card } from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import UserProfile from '../UserProfile/UserProfile'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
-  const [deleted, setDeleted] = useState(false)
+  const [deleted, setDeleted] = useState(null)
+
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
@@ -34,40 +39,49 @@ const Posts = ({ msgAlert, user, match }) => {
         variant: 'danger'
       }))
   }
+
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
       const isSameUser = (user._id === devpost.owner)
       return <div key={devpost._id}>
-        <div className="viewpost">
-          <Card>
-            <Card.Header as="h5">Post</Card.Header>
-            <Card.Body>
-              <Card.Title>Title: {devpost.title}</Card.Title>
-              <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
-              <Card.Text>
-                Content: <br />{devpost.content}
-              </Card.Text>
+        <Container className="viewpost">
+          <Row>
+            <Col>
               {isSameUser ? (
                 <React.Fragment>
-                  <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
-                  <Link to={`/update-post/${devpost._id}`}>
-                    <button className='btn btn-warning'>Update Post</button>
-                  </Link>
+                  <Card border="warning" style={{ width: '36rem' }} className="profile-cards">
+                    <Card.Body>
+                      <Card.Title>Title: {devpost.title}</Card.Title>
+                      <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+                      <Card.Text>
+                    Content: <br />{devpost.content}<br />
+                    Written By:{devpost.owner} {/* we would like to access the username here. */}
+                      </Card.Text>
+
+                      <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                      <Link to={`/update-post/${devpost._id}`}>
+                        <button className='btn btn-warning'>Update Post</button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
                 </React.Fragment>
-              ) : '' }
-            </Card.Body>
-          </Card>
-        </div>
+              ) : ''}
+            </Col>
+          </Row>
+        </Container>
       </div>
     })
+
     return (
-      <div className="">
-        <h2>Posts</h2>
-        <div>
-          {postsToRender}
+      <UserProfile>
+        <div className="">
+          <h4>Posts</h4>
+          <div className="">
+            {postsToRender}
+          </div>
         </div>
-      </div>
+      </UserProfile>
     )
   }
 }

@@ -3,6 +3,7 @@ import { Redirect, Link, withRouter } from 'react-router-dom'
 import Layout from '../shared/Layout'
 import messages from '../AutoDismissAlert/messages'
 import { updatePost, showPost } from '../../api/devpost'
+import Form from 'react-bootstrap/Form'
 
 const UpdatePost = ({ msgAlert, user, match }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
@@ -25,9 +26,6 @@ const UpdatePost = ({ msgAlert, user, match }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    // const { user } = this.props
-    console.log(user)
-    console.log(devpost)
     updatePost(user, devpost, match.params.id)
       .then(() => setUpdated({ updated: true }))
       .then(() => msgAlert({
@@ -36,7 +34,7 @@ const UpdatePost = ({ msgAlert, user, match }) => {
         variant: 'success'
       }))
       .catch(() => msgAlert({
-        heading: 'Update Post Failed. ',
+        heading: 'Failed To Update Post',
         message: messages.updatePostFailure,
         variant: 'danger'
       }))
@@ -48,39 +46,46 @@ const UpdatePost = ({ msgAlert, user, match }) => {
 
   return (
     <Layout>
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          placeholder="Enter a title"
-          value={devpost.title}
-          name="title"
-          onChange={handleChange}
-          type="text"
-        /><br />
-
-        <label>Subject</label>
-        <input
-          placeholder="Enter a subject"
-          value={devpost.subject}
-          name="subject"
-          onChange={handleChange}
-          type="text"
-        /><br />
-
-        <label>Content</label>
-        <textarea
-          placeholder="Enter text here ..."
-          value={devpost.content}
-          name="content"
-          onChange={handleChange}
-          type="text"
-        /><br />
-
-        <button className='btn btn-warning' type="submit">Update</button>
-        <Link to='/'>
-          <button className='btn btn-primary'>Cancel</button>
-        </Link>
-      </form>
+      <div className="row">
+        <div className="col-sm-10 col-md-8 mx-auto mt-5">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                placeholder="Enter a title"
+                value={devpost.title}
+                name="title"
+                onChange={handleChange}
+                type="text"
+              /><br />
+            </Form.Group>
+            <Form.Group controlId="subject">
+              <Form.Label>Subject</Form.Label>
+              <Form.Control
+                placeholder="Enter a subject"
+                value={devpost.subject}
+                name="subject"
+                onChange={handleChange}
+                type="text"
+              /><br />
+            </Form.Group>
+            <Form.Group controlId="content">
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                placeholder="Enter text here ..."
+                value={devpost.content}
+                name="content"
+                onChange={handleChange}
+                type="text"
+              /><br />
+            </Form.Group>
+            <button className='btn btn-warning' type="submit">Update</button>
+            <Link to='/'>
+              <button className='btn btn-primary'>Cancel</button>
+            </Link>
+          </Form>
+        </div>
+      </div>
     </Layout>
   )
 }
