@@ -65,7 +65,7 @@ const UserProfile = (props, user) => {
               </div>
             </Col>
 
-            <Col sm={8}>
+            <Col md={8}>
               <div style={userPosts}>
                 {props.children}
               </div>

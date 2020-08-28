@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col'
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
   const [deleted, setDeleted] = useState(null)
-
+  console.log(devposts)
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
@@ -53,7 +53,7 @@ const Posts = ({ msgAlert, user, match }) => {
                   <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
                   <Card.Text>
                     Content: <br />{devpost.content}<br />
-                    Written By:{user.username}
+                    Written By:
                   </Card.Text>
                   {isSameUser ? (
                     <React.Fragment>
