@@ -8,8 +8,7 @@ import { Card } from 'react-bootstrap'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
-  const [deleted, setDeleted] = useState(null)
-  console.log(devposts)
+  const [deleted, setDeleted] = useState(false)
   useEffect(() => {
     viewPosts(user, devposts)
       .then(res => setDevposts(res.data.devposts))
@@ -35,7 +34,6 @@ const Posts = ({ msgAlert, user, match }) => {
         variant: 'danger'
       }))
   }
-
   let postsToRender
   if (devposts) {
     postsToRender = devposts.map(devpost => {
@@ -63,12 +61,10 @@ const Posts = ({ msgAlert, user, match }) => {
         </div>
       </div>
     })
-
     return (
       <div className="">
         <h2>Posts</h2>
         <div>
-          <h4>Posts</h4>
           {postsToRender}
         </div>
       </div>
