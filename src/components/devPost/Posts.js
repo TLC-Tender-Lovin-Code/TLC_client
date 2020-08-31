@@ -48,7 +48,7 @@ const Posts = ({ msgAlert, user, match }) => {
           <Container>
             <Row>
               <Col xl={{ span: 12, offset: 3 }}>
-                <Card style={{ backgroundColor: '#f7e7bd', width: '35rem', margin: '10px', opacity: '100%' }}>
+                <Card style={{ backgroundColor: '#d9c6a5', width: '35rem', margin: '10px', opacity: '100%' }}>
                   <Card.Header as="h5" style={{ backgroundColor: '#a35d6a' }}>Title: {devpost.title}</Card.Header>
                   <Card.Body>
                     <Card.Title>Written By:{devpost.owner.username}</Card.Title>

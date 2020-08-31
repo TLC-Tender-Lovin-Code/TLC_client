@@ -56,14 +56,13 @@ const UserProfile = (props) => {
                 </Card>
               </div>
             </Col>
-
-            <Col md={8}>
-              <div style={userPosts}>
-                {props.children}
-              </div>
-            </Col>
           </Row>
         </Container>
+        <Col md={8}>
+          <div style={userPosts}>
+            {props.children}
+          </div>
+        </Col>
       </div>
     </div>
   )

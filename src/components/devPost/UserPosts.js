@@ -52,7 +52,7 @@ const Posts = ({ msgAlert, user, match }) => {
             <Col>
               {isSameUser ? (
                 <React.Fragment>
-                  <Card style={{ width: '35rem', backgroundColor: '#f7e7bd', margin: '10px', opacity: '100%' }} className="profile-cards">
+                  <Card style={{ width: '35rem', backgroundColor: '#d9c6a5', margin: '10px', opacity: '100%' }} className="profile-cards">
                     <Card.Header as="h5" style={{ backgroundColor: '#a35d6a' }}>Title: {devpost.title}</Card.Header>
                     <Card.Body>
                       <Card.Title>Title: {devpost.title}</Card.Title>
@@ -61,7 +61,6 @@ const Posts = ({ msgAlert, user, match }) => {
                     Content: <br />{devpost.content}<br />
                     Written By:{devpost.owner.username} {/* we would like to access the username here. */}
                       </Card.Text>
-
                       <Button onClick={() => destroy(devpost._id)} style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Delete Post</Button>
                       <Link to={`/update-post/${devpost._id}`}>
                         <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Update Post</Button>
@@ -75,7 +74,6 @@ const Posts = ({ msgAlert, user, match }) => {
         </Container>
       </div>
     })
-
     return (
       <UserProfile>
         <div className="">
