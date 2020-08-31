@@ -99,6 +99,7 @@ class SignUp extends Component {
                 />
               </Form.Group>
               <Button
+                style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}
                 variant="primary"
                 type="submit"
               >

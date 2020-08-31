@@ -1,5 +1,5 @@
 :local(.navbarBackground) {
   margin: 1rem auto;
   position: relative;
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(163,93,106,1) 100%);
+  background: radial-gradient(circle, rgba(247,231,189,1) 10%, rgba(163,93,106,1) 35%);
 }
