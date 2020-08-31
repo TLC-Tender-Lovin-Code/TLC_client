@@ -7,6 +7,9 @@ import axios from 'axios'
 import { Card } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Layout from '../shared/Layout'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -42,31 +45,36 @@ const Posts = ({ msgAlert, user, match }) => {
       const isSameUser = (user._id === devpost.owner._id)
       return <div key={devpost._id}>
         <div className="viewpost">
-          <Card as="col-6-sm">
-            <Card.Header as="h5">Written By:{devpost.owner.username}</Card.Header>
-            <Card.Body>
-              <Card.Title>Title: {devpost.title}</Card.Title>
-              <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
-              <Card.Text>
-                Content: <br />{devpost.content}
-              </Card.Text>
-              {isSameUser ? (
-                <React.Fragment>
-                  <Button variant="primary" onClick={() => destroy(devpost._id)}>Delete Post</Button>
-                  <Link to={`/update-post/${devpost._id}`}>
-                    <Button variant='warning'>Update Post</Button>
-                  </Link>
-                </React.Fragment>
-              ) : '' }
-            </Card.Body>
-          </Card>
+          <Container>
+            <Row>
+              <Col xl={{ span: 12, offset: 3 }}>
+                <Card style={{ backgroundColor: '#f7e7bd', width: '35rem', margin: '10px', opacity: '100' }}>
+                  <Card.Header as="h5" style={{ backgroundColor: '#d9c6a5' }}>Title: {devpost.title}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Written By:{devpost.owner.username}</Card.Title>
+                    <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
+                    <Card.Text>
+                      Content: <br />{devpost.content}
+                    </Card.Text>
+                    {isSameUser ? (
+                      <React.Fragment>
+                        <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }} onClick={() => destroy(devpost._id)}>Delete Post</Button>
+                        <Link to={`/update-post/${devpost._id}`}>
+                          <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Update Post</Button>
+                        </Link>
+                      </React.Fragment>
+                    ) : '' }
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </div>
     })
     return (
       <Layout>
         <div className="">
-          <h2>Posts</h2>
           <div>
             {postsToRender}
           </div>

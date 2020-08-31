@@ -4,7 +4,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const UserProfile = (props, user) => {
+const UserProfile = (props) => {
+  console.log(props)
   const backgroundImageUrl = 'https://i.imgur.com/X3qo3Y7.jpg'
 
   const profileHeader = {
@@ -49,7 +50,7 @@ const UserProfile = (props, user) => {
                   <Card.Body>
                     <Card.Subtitle>EMAIL</Card.Subtitle>
                     <Card.Text>
-                        Date Joined
+                      DATE JOINED
                     </Card.Text>
                   </Card.Body>
                 </Card>

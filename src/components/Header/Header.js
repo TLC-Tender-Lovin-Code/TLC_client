@@ -9,7 +9,6 @@ const authenticatedOptions = (
     <Nav.Link href="#devposts">DenFeed</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#create-post">Create Post</Nav.Link>
-
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
   </Fragment>
 )
@@ -22,7 +21,7 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" className={styles.navbarBackground} variant="dark" expand="md">
+  <Navbar bg="primary" className={styles.navbarBackground} variant="light" expand="md">
     <Navbar.Brand href="#den">
       Welcome to DevDen!
     </Navbar.Brand>

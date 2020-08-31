@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserProfile from '../UserProfile/UserProfile'
+import Button from 'react-bootstrap/Button'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -59,9 +60,9 @@ const Posts = ({ msgAlert, user, match }) => {
                     Written By:{devpost.owner.username} {/* we would like to access the username here. */}
                       </Card.Text>
 
-                      <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                      <Button onClick={() => destroy(devpost._id)} style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Delete Post</Button>
                       <Link to={`/update-post/${devpost._id}`}>
-                        <button className='btn btn-warning'>Update Post</button>
+                        <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Update Post</Button>
                       </Link>
                     </Card.Body>
                   </Card>
