@@ -29,6 +29,7 @@ We are a team of big ideas. We knew we would have amazing ideas to work off of b
 
 ### Unsolved Problems
 
+
 - Still need to
   - Create the "Watering Hole"
   - Work on the landing page.
@@ -36,6 +37,7 @@ We are a team of big ideas. We knew we would have amazing ideas to work off of b
 - Would like to eventually ...
   - Update the User Profile with the username information.
   - Focus on Styling to make the website more responsive and pop!
+
 
 ## Images
 
