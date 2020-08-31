@@ -9,6 +9,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserProfile from '../UserProfile/UserProfile'
+import Button from 'react-bootstrap/Button'
+// import Layout from '../shared/Layout'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -50,7 +52,8 @@ const Posts = ({ msgAlert, user, match }) => {
             <Col>
               {isSameUser ? (
                 <React.Fragment>
-                  <Card border="warning" style={{ width: '36rem' }} className="profile-cards">
+                  <Card style={{ width: '35rem', backgroundColor: '#d9c6a5', margin: '10px', opacity: '100%' }} className="profile-cards">
+                    <Card.Header as="h5" style={{ backgroundColor: '#a35d6a' }}>Title: {devpost.title}</Card.Header>
                     <Card.Body>
                       <Card.Title>Title: {devpost.title}</Card.Title>
                       <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
@@ -58,10 +61,9 @@ const Posts = ({ msgAlert, user, match }) => {
                     Content: <br />{devpost.content}<br />
                     Written By:{devpost.owner.username} {/* we would like to access the username here. */}
                       </Card.Text>
-
-                      <button onClick={() => destroy(devpost._id)} className='btn btn-danger'>Delete Post</button>
+                      <Button onClick={() => destroy(devpost._id)} style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Delete Post</Button>
                       <Link to={`/update-post/${devpost._id}`}>
-                        <button className='btn btn-warning'>Update Post</button>
+                        <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Update Post</Button>
                       </Link>
                     </Card.Body>
                   </Card>
@@ -72,14 +74,10 @@ const Posts = ({ msgAlert, user, match }) => {
         </Container>
       </div>
     })
-
     return (
       <UserProfile>
         <div className="">
-          <h4>Posts</h4>
-          <div className="">
-            {postsToRender}
-          </div>
+          {postsToRender}
         </div>
       </UserProfile>
     )

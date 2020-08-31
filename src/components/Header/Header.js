@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import styles from '../../Header.css'
+// import Layout from '../shared/Layout.js'
 
 const authenticatedOptions = (
   <Fragment>
@@ -9,7 +10,6 @@ const authenticatedOptions = (
     <Nav.Link href="#devposts">DenFeed</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#create-post">Create Post</Nav.Link>
-
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
   </Fragment>
 )
@@ -22,7 +22,7 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" className={styles.navbarBackground} variant="dark" expand="md">
+  <Navbar className={styles.navbarBackground} variant="light" expand="md">
     <Navbar.Brand href="#den">
       Welcome to DevDen!
     </Navbar.Brand>

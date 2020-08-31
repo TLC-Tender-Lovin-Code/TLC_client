@@ -4,6 +4,7 @@ import Layout from '../shared/Layout'
 import messages from '../AutoDismissAlert/messages'
 import { updatePost, showPost } from '../../api/devpost'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 const UpdatePost = ({ msgAlert, user, match }) => {
   const [devpost, setDevpost] = useState({ title: '', subject: '', content: '' })
@@ -81,9 +82,9 @@ const UpdatePost = ({ msgAlert, user, match }) => {
                 rows="4"
               /><br />
             </Form.Group>
-            <button className='btn btn-warning' type="submit">Update</button>
+            <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }} type="submit">Update</Button>
             <Link to='/'>
-              <button className='btn btn-primary'>Cancel</button>
+              <Button style={{ backgroundColor: '#c26565', borderColor: '#a35d6a', color: '#f7e7bd', borderRadius: '25px', margin: '10px' }}>Cancel</Button>
             </Link>
           </Form>
         </div>
