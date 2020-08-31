@@ -70,13 +70,15 @@ const UpdatePost = ({ msgAlert, user, match }) => {
               /><br />
             </Form.Group>
             <Form.Group controlId="content">
-              <Form.Label>Content</Form.Label>
+              <label>Content</label>
               <Form.Control
+                as="textarea"
                 placeholder="Enter text here ..."
                 value={devpost.content}
                 name="content"
                 onChange={handleChange}
                 type="text"
+                rows="4"
               /><br />
             </Form.Group>
             <button className='btn btn-warning' type="submit">Update</button>
