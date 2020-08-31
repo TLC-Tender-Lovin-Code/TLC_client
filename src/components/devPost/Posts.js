@@ -52,9 +52,9 @@ const Posts = ({ msgAlert, user, match }) => {
               </Card.Text>
               {isSameUser ? (
                 <React.Fragment>
-                  <Button variant='basic' onClick={() => destroy(devpost._id)}>Delete Post</Button>
+                  <Button variant="primary" onClick={() => destroy(devpost._id)}>Delete Post</Button>
                   <Link to={`/update-post/${devpost._id}`}>
-                    <Button variant='basic'>Update Post</Button>
+                    <Button variant='warning'>Update Post</Button>
                   </Link>
                 </React.Fragment>
               ) : '' }

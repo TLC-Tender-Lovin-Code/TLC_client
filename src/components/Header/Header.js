@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import styles from '../../Header.css'
 
 const authenticatedOptions = (
   <Fragment>
@@ -21,7 +22,7 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar bg="primary" className={styles.navbarBackground} variant="dark" expand="md">
     <Navbar.Brand href="#den">
       Welcome to DevDen!
     </Navbar.Brand>
