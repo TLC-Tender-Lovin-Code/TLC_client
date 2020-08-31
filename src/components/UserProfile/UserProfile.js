@@ -3,9 +3,9 @@ import { Card } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+// import Layout from '../shared/Layout'
 
 const UserProfile = (props) => {
-  console.log(props)
   const backgroundImageUrl = 'https://i.imgur.com/X3qo3Y7.jpg'
 
   const profileHeader = {
@@ -22,7 +22,7 @@ const UserProfile = (props) => {
   }
 
   const userPosts = {
-    color: 'blue',
+    color: 'black',
     height: '100vh',
     display: 'flex',
     justifyContent: 'center',
@@ -44,7 +44,7 @@ const UserProfile = (props) => {
           <Row>
             <Col>
               <div>
-                <Card bg="primary" style={{ width: '18rem' }}>
+                <Card style={{ backgroundColor: '#a35d6a', width: '20rem' }}>
                   <Card.Title>USERNAME</Card.Title>
                   <Card.Img variant="top" src="https://i.imgur.com/UoH44sU.jpg/100px180" />
                   <Card.Body>

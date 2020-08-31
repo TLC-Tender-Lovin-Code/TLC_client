@@ -10,6 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserProfile from '../UserProfile/UserProfile'
 import Button from 'react-bootstrap/Button'
+// import Layout from '../shared/Layout'
 
 const Posts = ({ msgAlert, user, match }) => {
   const [devposts, setDevposts] = useState([])
@@ -51,7 +52,8 @@ const Posts = ({ msgAlert, user, match }) => {
             <Col>
               {isSameUser ? (
                 <React.Fragment>
-                  <Card border="warning" style={{ width: '36rem' }} className="profile-cards">
+                  <Card style={{ width: '35rem', backgroundColor: '#f7e7bd', margin: '10px', opacity: '100%' }} className="profile-cards">
+                    <Card.Header as="h5" style={{ backgroundColor: '#a35d6a' }}>Title: {devpost.title}</Card.Header>
                     <Card.Body>
                       <Card.Title>Title: {devpost.title}</Card.Title>
                       <Card.Subtitle>Subject: {devpost.subject}</Card.Subtitle>
@@ -77,10 +79,7 @@ const Posts = ({ msgAlert, user, match }) => {
     return (
       <UserProfile>
         <div className="">
-          <h4>Posts</h4>
-          <div className="">
-            {postsToRender}
-          </div>
+          {postsToRender}
         </div>
       </UserProfile>
     )
