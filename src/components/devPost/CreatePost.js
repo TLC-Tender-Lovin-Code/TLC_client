@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 // import axios from 'axios'
 import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 // import apiUrl from '../../apiConfig'
 import { createPost } from '../../api/devpost'
@@ -67,17 +68,19 @@ const PostCreate = ({ msgAlert, user }) => {
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="content">
-            <Form.Label>Content</Form.Label>
+          <label>Content</label>
+          <InputGroup controlId="content">
             <Form.Control
+              as="textarea"
               required
               name="content"
               value={devpost.content}
               type="text"
               placeholder="Content"
+              rows="4"
               onChange={handleChange}
             />
-          </Form.Group>
+          </InputGroup>
           <Button
             variant="primary"
             type="submit"
