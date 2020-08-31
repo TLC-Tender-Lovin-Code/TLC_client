@@ -29,8 +29,7 @@ We are a team of big ideas. We knew we would have amazing ideas to work off of b
 
 ### Unsolved Problems
 
-- Still need to ....
-- Would like to eventually ....
+- Still need to style our site a bit more
 
 ## Images
 
